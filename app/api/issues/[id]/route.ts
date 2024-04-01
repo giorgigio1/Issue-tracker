@@ -25,7 +25,6 @@ export async function PATCH(
       description: body.description,
     },
   });
-  console.log("@@@", body);
 
   return NextResponse.json(updatedIssue);
 }
