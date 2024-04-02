@@ -24,7 +24,7 @@ export async function PATCH(
       title: body.title,
       description: body.description,
     },
-  });s
+  });
 
   return NextResponse.json(updatedIssue);
 }
