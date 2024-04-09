@@ -18,8 +18,7 @@ import {
 const NavBar = () => {
   const currentPath = usePathname();
   const { status, data: session } = useSession();
-  console.log("session", session);
-  console.log("status", status);
+
   const links = [
     { label: "Dashboard", href: "/" },
     { label: "Issues", href: "/issues/list" },
@@ -61,6 +60,7 @@ const NavBar = () => {
                     size="2"
                     radius="full"
                     className="cursor-pointer"
+                    referrerPolicy="no-referrer"
                   />
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Content>
