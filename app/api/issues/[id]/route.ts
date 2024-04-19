@@ -8,8 +8,8 @@ export async function PATCH(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  // const session = await getServerSession(authOptions);
-  // if (!session) return NextResponse.json({}, { status: 401 });
+  const session = await getServerSession(authOptions);
+  if (!session) return NextResponse.json({}, { status: 401 });
 
   const body = await request.json();
 
@@ -18,7 +18,7 @@ export async function PATCH(
     return NextResponse.json(validation.error.format(), { status: 400 });
 
   const { title, description, assignedToUserId } = body;
-  console.log('Received data:', body); // Debug log
+  console.log("Received data:", body); // Debug log
 
   if (assignedToUserId) {
     const user = await prisma.user.findUnique({
@@ -68,4 +68,15 @@ export async function DELETE(
   });
 
   return NextResponse.json(deletedIssue);
+}
+
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const issue = await prisma.issue.findUnique({
+    where: { id: parseInt(params.id) },
+  });
+
+  return NextResponse.json(issue);
 }
